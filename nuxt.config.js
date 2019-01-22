@@ -24,7 +24,7 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: [],
+  css: ['sanitize.css', '~/assets/scss/main.scss'],
 
   /*
   ** Plugins to load before mounting the App

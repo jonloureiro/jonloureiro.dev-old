@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "cross-env": "^5.2.0",
-    "nuxt": "^2.3.4"
+    "nuxt": "^2.3.4",
+    "sanitize.css": "^8.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
@@ -31,8 +32,10 @@
     "eslint-plugin-promise": ">=4.0.1",
     "eslint-plugin-standard": ">=4.0.0",
     "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.11.0",
     "nodemon": "^1.18.9",
     "prettier": "1.14.3",
-    "push-dir": "^0.4.1"
+    "push-dir": "^0.4.1",
+    "sass-loader": "^7.1.0"
   }
 }

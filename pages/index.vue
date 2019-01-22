@@ -1,65 +1,65 @@
-<template>
-  <section class="container">
-    <div>
-      <h1 class="title">
-        jonloureiro.github.io
-      </h1>
-      <h2 class="subtitle">
-        My website
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </section>
+<template lang="html">
+  <div :class="$options.name">
+    <Card :class="`${$options.name}__card`">
+      <img src="~/assets/me.jpeg" :class="`${$options.name}__img`">
+      <h3 :class="`${$options.name}__title`">
+        Jonathan Loureiro
+      </h3>
+      <p :class="`${$options.name}__text`">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </p>
+    </Card>
+  </div>
 </template>
 
 <script>
-export default {}
+import Card from '~/components/Card.vue'
+
+export default {
+  name: 'Home',
+  components: {
+    Card
+  }
+}
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
+<style lang="scss" scoped>
+@import '~/assets/scss/lib.scss';
+
+.Home {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-}
+  color: $color-primary;
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+  &__card {
+    width: 16rem;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
+  &__img {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 3rem;
+    margin-bottom: 0.25rem;
+  }
 
-.links {
-  padding-top: 15px;
+  &__title {
+    margin: 0.25rem;
+    text-align: center;
+    color: $color-active;
+  }
+
+  &__text {
+    margin: 0;
+    text-align: justify;
+  }
 }
 </style>

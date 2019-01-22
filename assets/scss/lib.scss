@@ -1,0 +1,16 @@
+$my-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+
+$background-color: #fdfdfd;
+$color-primary: #786998;
+$color-active: #638688;
+
+@mixin media-m {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+@mixin media-l {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}

@@ -1,55 +1,93 @@
-<template>
-  <div>
-    <nuxt />
+<template lang="html">
+  <div :class="$options.name">
+    <SideNav :class="`${$options.name}__side-nav`" />
+    <nuxt :class="`${$options.name}__main`" />
+    <SocialNav :class="`${$options.name}__social-nav`" />
   </div>
 </template>
 
-<style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
+<script>
+import SideNav from '~/components/SideNav.vue'
+import SocialNav from '~/components/SocialNav.vue'
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
+export default {
+  name: 'Layout',
+  components: {
+    SideNav,
+    SocialNav
+  }
 }
+</script>
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
+<style lang="scss" scoped>
+@import '~/assets/scss/lib.scss';
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
+.Layout {
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 1fr;
+  height: 100vh;
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
+  &__side-nav {
+    order: 0;
+    z-index: 2;
+    display: none;
+    flex-direction: column;
+    padding: 0.125rem 0.5rem;
+  }
 
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+  &__main {
+    order: 1;
+    z-index: 0;
+  }
+
+  &__social-nav {
+    order: 2;
+    z-index: 2;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 0.5rem;
+  }
+
+  @include media-m {
+    & {
+      grid-template-columns: 10rem 1fr 6rem 4rem;
+    }
+
+    &__side-nav {
+      display: flex;
+      box-shadow: $my-shadow;
+    }
+
+    &__main {
+    }
+
+    &__social-nav {
+      grid-column: 4 / -1;
+      display: flex;
+      box-shadow: $my-shadow;
+    }
+  }
+
+  @include media-l {
+    & {
+      grid-template-columns:
+        1fr 10rem minmax(calc(1024px - 20rem), calc(1280px - 20rem))
+        6rem 4rem 1fr;
+    }
+
+    &__side-nav {
+      grid-column: 1 / 3;
+    }
+
+    &__main {
+    }
+
+    &__social-nav {
+      grid-column: 5 / -1;
+    }
+  }
 }
 </style>
