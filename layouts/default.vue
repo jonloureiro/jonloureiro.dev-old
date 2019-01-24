@@ -53,7 +53,7 @@ export default {
 
   @include media-m {
     & {
-      grid-template-columns: 10rem 1fr 6rem 4rem;
+      grid-template-columns: 16rem 1fr 4rem;
     }
 
     &__side-nav {
@@ -65,7 +65,6 @@ export default {
     }
 
     &__social-nav {
-      grid-column: 4 / -1;
       display: flex;
       box-shadow: $my-shadow;
     }
@@ -74,8 +73,8 @@ export default {
   @include media-l {
     & {
       grid-template-columns:
-        1fr 10rem minmax(calc(1024px - 20rem), calc(1280px - 20rem))
-        6rem 4rem 1fr;
+        1fr 16rem minmax(calc(1024px - 32rem), calc(1280px - 32rem))
+        12rem 1fr 4rem;
     }
 
     &__side-nav {
@@ -86,7 +85,7 @@ export default {
     }
 
     &__social-nav {
-      grid-column: 5 / -1;
+      grid-column: 6 / -1;
     }
   }
 }

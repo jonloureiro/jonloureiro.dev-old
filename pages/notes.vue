@@ -18,11 +18,53 @@
 </template>
 
 <script>
+import TweenMax from 'gsap'
+
 export default {
   name: 'Notes',
   data: function() {
     return {
       pageName: 'Notas'
+    }
+  },
+  transition: {
+    css: false,
+    beforeEnter: function(el) {
+      // ...
+    },
+    // o callback de finalização é opcional quando
+    // utilizado em combinação com CSS
+    enter: function(el, onComplete) {
+      TweenMax.from(el, 0.5, {
+        scale: 1.2,
+        opacity: 0,
+        onComplete
+      })
+    },
+    afterEnter: function(el) {
+      // ...
+    },
+    enterCancelled: function(el) {
+      // ...
+    },
+    beforeLeave: function(el) {
+      // ...
+    },
+    // o callback de finalização é opcional quando
+    // utilizado em combinação com CSS
+    leave: function(el, onComplete) {
+      TweenMax.to(el, 0.5, {
+        scale: 0.8,
+        opacity: 0,
+        onComplete
+      })
+    },
+    afterLeave: function(el) {
+      // ...
+    },
+    // leaveCancelled apenas disponível com v-show
+    leaveCancelled: function(el) {
+      // ...
     }
   }
 }

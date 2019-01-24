@@ -18,11 +18,53 @@
 </template>
 
 <script>
+import { TweenMax, Expo } from 'gsap'
+
 export default {
   name: 'Projects',
   data: function() {
     return {
       pageName: 'Projetos'
+    }
+  },
+  transition: {
+    css: false,
+    beforeEnter: function(el) {
+      // ...
+    },
+    // o callback de finalização é opcional quando
+    // utilizado em combinação com CSS
+    enter: function(el, onComplete) {
+      TweenMax.from(el, 0.5, {
+        y: -2000,
+        ease: Expo.easeOut,
+        onComplete
+      })
+    },
+    afterEnter: function(el) {
+      // ...
+    },
+    enterCancelled: function(el) {
+      // ...
+    },
+    beforeLeave: function(el) {
+      // ...
+    },
+    // o callback de finalização é opcional quando
+    // utilizado em combinação com CSS
+    leave: function(el, onComplete) {
+      TweenMax.to(el, 0.5, {
+        y: 2000,
+        ease: Expo.easeIn,
+        onComplete
+      })
+    },
+    afterLeave: function(el) {
+      // ...
+    },
+    // leaveCancelled apenas disponível com v-show
+    leaveCancelled: function(el) {
+      // ...
     }
   }
 }

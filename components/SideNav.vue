@@ -12,7 +12,10 @@
       </nuxt-link>
     </div>
     <footer :class="`${$options.name}__footer`">
-      Make with <strong :class="`${$options.name}__footer--strong`">Nuxt</strong>
+      Make with
+      <strong :class="`${$options.name}__footer--strong`">
+        Nuxt
+      </strong>
     </footer>
   </nav>
 </template>
