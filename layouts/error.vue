@@ -3,10 +3,10 @@
     <section>
       <h2>Ops... &#x1F605;</h2>
       <p v-if="error.statusCode === 404">
-        Page not found
+        Página não encontrada
       </p>
       <p v-else>
-        An error occurred
+        Um erro aconteceu
       </p>
       <hr>
     </section>

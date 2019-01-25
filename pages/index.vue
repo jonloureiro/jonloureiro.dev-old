@@ -11,13 +11,16 @@
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat.
       </p>
+      <nuxt-link :class="`${$options.name}__link`" to="/curriculum">
+        Curriculum
+      </nuxt-link>
     </Card>
   </div>
 </template>
 
 <script>
 import { TweenMax, Expo } from 'gsap'
-
+import animation from '~/assets/js/animation.js'
 import Card from '~/components/Card.vue'
 
 export default {
@@ -27,38 +30,51 @@ export default {
   },
   transition: {
     css: false,
-    beforeEnter: function(el) {
-      // ...
-    },
     enter: function(el, onComplete) {
-      TweenMax.from(el, 1, {
-        x: 500,
-        ease: Expo.easeOut,
+      const from = this.$store.state.route.from
+      let transition
+
+      switch (from.name) {
+        case 'curriculum':
+          transition = animation.xMinus()
+          break
+        case null:
+          transition = animation.zPlus(0.5)
+          break
+        default:
+          transition = animation.zMinus()
+      }
+
+      const { x, scale, opacity, delay } = transition
+      TweenMax.from(el, animation.duration.enter, {
+        x,
+        scale,
+        opacity,
+        delay,
+        ease: Expo.easeInOut,
         onComplete
       })
     },
-    afterEnter: function(el) {
-      // ...
-    },
-    enterCancelled: function(el) {
-      // ...
-    },
-    beforeLeave: function(el) {
-      // ...
-    },
     leave: function(el, onComplete) {
-      TweenMax.to(el, 0.5, {
-        x: -500,
+      const to = this.$store.state.route.to
+      let transition
+
+      switch (to.name) {
+        case 'curriculum':
+          transition = animation.xMinus()
+          break
+        default:
+          transition = animation.zMinus()
+      }
+
+      const { x, scale, opacity } = transition
+      TweenMax.to(el, animation.duration.leave, {
+        x,
+        scale,
+        opacity,
         ease: Expo.easeIn,
         onComplete
       })
-    },
-    afterLeave: function(el) {
-      // ...
-    },
-    // leaveCancelled apenas disponível com v-show
-    leaveCancelled: function(el) {
-      // ...
     }
   }
 }
@@ -98,6 +114,11 @@ export default {
   &__text {
     margin: 0;
     text-align: justify;
+  }
+
+  &__link {
+    margin-top: 0.25rem;
+    color: $color-active;
   }
 }
 </style>

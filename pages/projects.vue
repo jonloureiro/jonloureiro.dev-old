@@ -19,6 +19,7 @@
 
 <script>
 import { TweenMax, Expo } from 'gsap'
+import animation from '~/assets/js/animation.js'
 
 export default {
   name: 'Projects',
@@ -29,42 +30,37 @@ export default {
   },
   transition: {
     css: false,
-    beforeEnter: function(el) {
-      // ...
-    },
-    // o callback de finalização é opcional quando
-    // utilizado em combinação com CSS
     enter: function(el, onComplete) {
-      TweenMax.from(el, 0.5, {
-        y: -2000,
-        ease: Expo.easeOut,
+      const from = this.$store.state.route.from
+      let transition
+
+      switch (from.name) {
+        case null:
+          transition = animation.zPlus(0.5)
+          break
+        default:
+          transition = animation.zPlus()
+      }
+
+      const { x, scale, opacity, delay } = transition
+      TweenMax.from(el, animation.duration.enter, {
+        x,
+        scale,
+        opacity,
+        delay,
+        ease: Expo.easeInOut,
         onComplete
       })
     },
-    afterEnter: function(el) {
-      // ...
-    },
-    enterCancelled: function(el) {
-      // ...
-    },
-    beforeLeave: function(el) {
-      // ...
-    },
-    // o callback de finalização é opcional quando
-    // utilizado em combinação com CSS
     leave: function(el, onComplete) {
-      TweenMax.to(el, 0.5, {
-        y: 2000,
+      const { x, scale, opacity } = animation.zPlus()
+      TweenMax.to(el, animation.duration.leave, {
+        x,
+        scale,
+        opacity,
         ease: Expo.easeIn,
         onComplete
       })
-    },
-    afterLeave: function(el) {
-      // ...
-    },
-    // leaveCancelled apenas disponível com v-show
-    leaveCancelled: function(el) {
-      // ...
     }
   }
 }

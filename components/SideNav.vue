@@ -1,28 +1,44 @@
 <template lang="html">
-  <nav :class="$options.name">
-    <div :class="`${$options.name}__wrapper`">
-      <nuxt-link :class="`${$options.name}__link`" to="/">
-        Eu
-      </nuxt-link>
-      <nuxt-link :class="`${$options.name}__link`" to="/notes">
-        Notas
-      </nuxt-link>
-      <nuxt-link :class="`${$options.name}__link`" to="/projects">
-        Projetos
-      </nuxt-link>
-    </div>
-    <footer :class="`${$options.name}__footer`">
-      Make with
-      <strong :class="`${$options.name}__footer--strong`">
-        Nuxt
-      </strong>
-    </footer>
-  </nav>
+  <transition
+    :css="false"
+    appear
+    @appear="appearHook"
+  >
+    <nav :class="$options.name">
+      <div :class="`${$options.name}__wrapper`">
+        <nuxt-link :class="`${$options.name}__link`" to="/">
+          Eu
+        </nuxt-link>
+        <nuxt-link :class="`${$options.name}__link`" to="/notes">
+          Notas
+        </nuxt-link>
+        <nuxt-link :class="`${$options.name}__link`" to="/projects">
+          Projetos
+        </nuxt-link>
+      </div>
+      <footer :class="`${$options.name}__footer`">
+        Make with
+        <strong :class="`${$options.name}__footer--strong`">
+          Nuxt
+        </strong>
+      </footer>
+    </nav>
+  </transition>
 </template>
 
 <script>
+import TweenMax from 'gsap'
+
 export default {
-  name: 'SideNav'
+  name: 'SideNav',
+  methods: {
+    appearHook: function(el) {
+      TweenMax.from(el, 0.5, {
+        x: -32,
+        opacity: 0
+      })
+    }
+  }
 }
 </script>
 

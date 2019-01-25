@@ -6,9 +6,9 @@
       <hr>
     </section>
     <nav>
-      <a href="https://github.com/jonloureiro">
-        GitHub
-      </a>
+      <nuxt-link :class="`${$options.name}__link`" to="/">
+        Voltar
+      </nuxt-link>
       &middot;
       <a href="https://github.com/jonloureiro/jonloureiro.github.io">
         Code
@@ -18,7 +18,8 @@
 </template>
 
 <script>
-import TweenMax from 'gsap'
+import { TweenMax, Expo } from 'gsap'
+import animation from '~/assets/js/animation.js'
 
 export default {
   name: 'Curriculum',
@@ -29,38 +30,51 @@ export default {
   },
   transition: {
     css: false,
-    beforeEnter: function(el) {
-      TweenMax.set(el, {
-        x: 0
-      }) // ...
+    enter: function(el, onComplete) {
+      const from = this.$store.state.route.from
+      let transition
+
+      switch (from.name) {
+        case 'index':
+          transition = animation.xPlus()
+          break
+        case null:
+          transition = animation.zPlus(0.5)
+          break
+        default:
+          transition = animation.zMinus()
+      }
+
+      const { x, scale, opacity, delay } = transition
+      TweenMax.from(el, animation.duration.enter, {
+        x,
+        scale,
+        opacity,
+        delay,
+        ease: Expo.easeInOut,
+        onComplete
+      })
     },
-    // o callback de finalização é opcional quando
-    // utilizado em combinação com CSS
-    enter: function(el, done) {
-      // ...
-      done()
-    },
-    afterEnter: function(el) {
-      // ...
-    },
-    enterCancelled: function(el) {
-      // ...
-    },
-    beforeLeave: function(el) {
-      // ...
-    },
-    // o callback de finalização é opcional quando
-    // utilizado em combinação com CSS
-    leave: function(el, done) {
-      // ...
-      done()
-    },
-    afterLeave: function(el) {
-      // ...
-    },
-    // leaveCancelled apenas disponível com v-show
-    leaveCancelled: function(el) {
-      // ...
+    leave: function(el, onComplete) {
+      const to = this.$store.state.route.to
+      let transition
+
+      switch (to.name) {
+        case 'index':
+          transition = animation.xPlus()
+          break
+        default:
+          transition = animation.zMinus()
+      }
+
+      const { x, scale, opacity } = transition
+      TweenMax.to(el, animation.duration.leave, {
+        x,
+        scale,
+        opacity,
+        ease: Expo.easeIn,
+        onComplete
+      })
     }
   }
 }
