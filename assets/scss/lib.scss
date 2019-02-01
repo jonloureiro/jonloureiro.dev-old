@@ -5,7 +5,7 @@ $color-primary: #786998;
 $color-active: #638688;
 
 @mixin media-m {
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     @content;
   }
 }

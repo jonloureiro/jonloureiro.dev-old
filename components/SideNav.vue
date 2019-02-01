@@ -9,9 +9,15 @@
         <nuxt-link :class="`${$options.name}__link`" to="/">
           Eu
         </nuxt-link>
+        <div :class="`${$options.name}__dot`">
+          &middot;
+        </div>
         <nuxt-link :class="`${$options.name}__link`" to="/notes">
           Notas
         </nuxt-link>
+        <div :class="`${$options.name}__dot`">
+          &middot;
+        </div>
         <nuxt-link :class="`${$options.name}__link`" to="/projects">
           Projetos
         </nuxt-link>
@@ -47,22 +53,24 @@ export default {
 
 .SideNav {
   background-color: #fff;
+  overflow: hidden;
 
   &__wrapper {
     flex-grow: 1;
-    height: 100%;
-    align-self: flex-end;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
   }
 
   &__link {
     font-size: 1.15rem;
     color: $color-primary;
     text-decoration: none;
-    margin: 0.125rem 0rem;
+    margin: 0.125rem 0;
+  }
+
+  &__dot {
+    margin: 0 0.4rem;
   }
 
   .nuxt-link-exact-active {
@@ -72,12 +80,24 @@ export default {
 
   &__footer {
     flex-shrink: 1;
-    align-self: center;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     color: $color-primary;
 
     &--strong {
       color: $color-active;
+    }
+  }
+
+  @include media-m {
+    &__wrapper {
+      align-self: flex-end;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    &__dot {
+      display: none;
     }
   }
 }

@@ -17,5 +17,6 @@ export default {
   box-shadow: $my-shadow;
   border-radius: 0.5rem;
   background-color: #fff;
+  margin: 1.5rem;
 }
 </style>

@@ -40,12 +40,20 @@ export default {
 
 .SocialNav {
   background-color: #fff;
-}
 
-a {
-  margin: 1.25rem 0;
-  text-decoration: none;
-  font-weight: 600;
-  color: $color-active;
+  a {
+    margin: 0;
+    padding: 0 1.25rem;
+    text-decoration: none;
+    font-weight: 600;
+    color: $color-active;
+  }
+
+  @include media-m {
+    a {
+      margin: 1.25rem 0;
+      padding: 0;
+    }
+  }
 }
 </style>

@@ -23,17 +23,20 @@ export default {
 @import '~/assets/scss/lib.scss';
 
 .Layout {
-  overflow: hidden;
+  overflow: scroll;
   display: grid;
-  grid-template-rows: 1fr;
+  grid-template-rows: 2.75rem 1fr 2.75rem;
+  grid-template-columns: 1fr;
   height: 100vh;
 
   &__side-nav {
     order: 0;
     z-index: 2;
-    display: none;
-    flex-direction: column;
-    padding: 0.125rem 0.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 1rem;
+    box-shadow: $my-shadow;
   }
 
   &__main {
@@ -44,9 +47,10 @@ export default {
   &__social-nav {
     order: 2;
     z-index: 2;
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
+    display: flex;
+    box-shadow: $my-shadow;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
     padding-left: 0.5rem;
   }
@@ -54,19 +58,20 @@ export default {
   @include media-m {
     & {
       grid-template-columns: 16rem 1fr 4rem;
+      grid-template-rows: 1fr;
     }
 
     &__side-nav {
-      display: flex;
-      box-shadow: $my-shadow;
+      flex-direction: column;
+      padding: 0.125rem 0.5rem;
     }
 
     &__main {
     }
 
     &__social-nav {
-      display: flex;
-      box-shadow: $my-shadow;
+      align-items: flex-start;
+      flex-direction: column;
     }
   }
 
